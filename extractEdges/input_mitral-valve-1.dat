@@ -1,0 +1,13 @@
+#Num faces (Leaflets)
+1
+#VTU file names
+mitral-valve-1.vtp
+# landmarks on each face
+ 818	794
+# 2 surface name corr. landmarks
+base 
+tip  
+#Output dir
+mesh-surfaces
+#Write Single File 
+0

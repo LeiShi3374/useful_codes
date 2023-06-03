@@ -1,0 +1,13 @@
+#Num faces (Leaflets)
+1
+#VTU file names
+lumen_wall.vtp
+# landmarks on each face
+407    493
+# 2 surface name corr. landmarks
+in
+out
+#Output dir
+mesh-surfaces
+#Write Single File 
+0
