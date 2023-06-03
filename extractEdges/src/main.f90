@@ -18,6 +18,7 @@
          real(kind=8), allocatable :: x(:,:)
          real(kind=8), allocatable :: d(:,:)
          character(len=strl) :: name
+         character(len=strl), allocatable :: edge_name(:)
       end type faceType
 
       type(faceType), allocatable :: fa(:), ed(:)
@@ -72,10 +73,9 @@
       do iFa=1, nFa
          call getEdges(fa(iFa), ed, lmrks(:,iFa))
 
-         do iEd=1, nEd
+         do iEd=1, nEd       
             i = len(trim(fa(iFa)%name))
-            write(fname,'(A)') trim(fdir)//"/"//fa(iFa)%name(1:i-4)//&
-               "_edge"//trim(str(iEd))//".vtp"
+            write(fname,'(A)') trim(fdir)//"/"//trim(fa(iFa)%edge_name(iEd))//".vtp"
             ed(iEd)%IEN = ed(iEd)%IEN - 1
             call writeVTP(ed(iEd), fname)
             ed(iEd)%IEN = ed(iEd)%IEN + 1
@@ -113,6 +113,7 @@
 
       character(len=strl), intent(in) :: fname
 
+      character(len=strl) :: aaa
       integer, parameter :: fid = 10
       integer :: iFa, iEd
 
@@ -132,6 +133,15 @@
       do iFa=1, nFa
          read(fid,*) (lmrks(iEd,iFa),iEd=1, 2)
       end do
+
+      read(fid,*)
+      do iFa=1, nFa
+         allocate(fa(iFa)%edge_name(nEd))
+         do iEd = 1, nEd
+            read(fid,'(A)') fa(iFa)%edge_name(iEd)
+         end do
+      end do
+      
       read(fid,*)
       read(fid,'(A)') fdir
       read(fid,*)
@@ -186,7 +196,7 @@
             write(*,ftab4) "Ignoring.."
             istat = 0
          end if
-
+ 
          call getVTK_elemIEN(vtu, lFa%ien, istat)
          if (istat .lt. 0) exit
 
@@ -217,7 +227,7 @@
       integer :: a1, b1, e1, Ac1, Bc1
       integer :: i, j, nNb, nEb, maxNEb
       integer, allocatable :: IENb(:,:), bNds(:), tmpI(:,:), ePtr(:)
-
+  
 !     Collect all the boundary edges of the face
       maxNEb = 250
       nEb = 0
@@ -264,96 +274,73 @@
       deallocate(IENb)
       allocate(IENb(3,nEb))
       IENb = tmpI
-      deallocate(tmpI)
+      deallocate(tmpI)   
 
-!     Choose a seed as one of the landmarks for sorting the border nodes
-      flag = .false.
-      do e=1, nEb
-         Ac = IENb(1,e)
-         Bc = IENb(2,e)
-         if (refNd(1) .eq. Ac) then
-            flag = .true.
-            exit
-         end if
-      end do
-      if (.not.flag) write(*,ftab4) &
-         "Error: choosen landmark not on the boundary"
-
-      allocate(bNds(nEb), ePtr(nEb))
-      bNds = 0
-      ePtr = 0
-      nNb  = 1
-      bNds(nNb) = Ac
-      ePtr(nNb) = IENb(3,e)
-      do
+      do i=1, nEd
+   !     Choose a seed as one of the landmarks for sorting the border nodes
+         flag = .false.
          do e=1, nEb
             Ac = IENb(1,e)
-            if (Bc .eq. Ac) then
-               Bc  = IENb(2,e)
-               nNb = nNb + 1
-               bNds(nNb) = Ac
-               ePtr(nNb) = IENb(3,e)
+            Bc = IENb(2,e)
+            if (refNd(i) .eq. Ac) then
+               flag = .true.
                exit
             end if
          end do
-         if (Bc .eq. bNds(1)) exit
-      end do
+         if (.not.flag) write(*,ftab4) &
+            "Error: choosen landmark not on the boundary"
 
-!     Time to form the edge structure
-      dflag = .false.
-      if (allocated(lFa%d)) dflag = .true.
-      do i=1, nEd
-         j = i + 1
-         if (i .eq. nEd) j = 1
-         Ac = refNd(i)
-         Bc = refNd(j)
-         do a=1, nNb
-            if (bNds(a) .eq. Ac) exit
+         allocate(bNds(nEb), ePtr(nEb))
+         bNds = 0
+         ePtr = 0
+         nNb  = 1
+         bNds(nNb) = Ac
+         ePtr(nNb) = IENb(3,e)
+         do
+            do e=1, nEb
+               Ac = IENb(1,e)
+               if (Bc .eq. Ac) then
+                  Bc  = IENb(2,e)
+                  nNb = nNb + 1
+                  bNds(nNb) = Ac
+                  ePtr(nNb) = IENb(3,e)
+                  exit
+               end if
+            end do
+            if (Bc .eq. bNds(1)) exit
          end do
-         do b=1, nNb
-            if (bNds(b) .eq. Bc) exit
-         end do
 
-         flag = .false.
-         if (b .eq. 1) flag = .true.
-
-         lEd(i)%nNo = b - a + 1
-         if (flag) lEd(i)%nNo = nNb + lEd(i)%nNo
-         lEd(i)%nEl = lEd(i)%nNo - 1
+         lEd(i)%nNo = nNb
+         lEd(i)%nEl = lEd(i)%nNo
 
          allocate(lEd(i)%x(nd,lEd(i)%nNo), lEd(i)%gN(lEd(i)%nNo), &
             lEd(i)%IEN(2,lEd(i)%nEl), lEd(i)%gE(lEd(i)%nEl))
          if (dflag) allocate(lEd(i)%d(nd,lEd(i)%nNo))
-         if (.not.flag) then
-            do j=a, b
-               Ac = bNds(j)
-               lEd(i)%x(:,j-a+1) = lFa%x(:,Ac)
-               lEd(i)%gN(j-a+1)  = Ac
-               if (dflag) lEd(i)%d(:,j-a+1) = lFa%d(:,Ac)
 
-               if (j .ne. b) lEd(i)%gE(j-a+1) = ePtr(j)
-            end do
-         else
-            Ac = bNds(1)
-            lEd(i)%x(:,1) = lFa%x(:,Ac)
-            lEd(i)%gN(1) = Ac
-            lEd(i)%gE(1) = ePtr(nNb)
-            if (dflag) lEd(i)%d(:,1) = lFa%d(:,Ac)
-            do j=1, lEd(i)%nNo-1
-               Ac = bNds(nNb+1-j)
-               lEd(i)%x(:,j+1) = lFa%x(:,Ac)
-               lEd(i)%gN(j+1) = Ac
-               if (j .lt. lEd(i)%nEl) lEd(i)%gE(j+1) = ePtr(nNb-j)
-               if (dflag) lEd(i)%d(:,j+1) = lFa%d(:,Ac)
-            end do
-         end if
+         do j=1, lEd(i)%nNo
+            Ac = bNds(j)
+            lEd(i)%x(:,j) = lFa%x(:,Ac)
+            lEd(i)%gN(j)  = Ac
+            if (dflag) lEd(i)%d(:,j) = lFa%d(:,Ac)
+
+            lEd(i)%gE(j) = ePtr(j)
+
+         end do
 
 !        IEN array
-         do e=1, lEd(i)%nEl
+         do e=1, lEd(i)%nEl - 1
             lEd(i)%IEN(1,e) = e
             lEd(i)%IEN(2,e) = e+1
+            ! print *, lEd(i)%IEN(:,e)
          end do
-      end do
+         e = lEd(i)%nEl
+         lEd(i)%IEN(1,e) = e
+         lEd(i)%IEN(2,e) = 1
+
+         ! print *, lEd(i)%gE(:)
+
+         deallocate(bNds, ePtr)
+      end do   
 
       return
       end subroutine getEdges

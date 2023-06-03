@@ -1,6 +1,6 @@
 
       module variables
-         integer, parameter :: nTS = 50001, stdL = 400
+         integer, parameter :: stdL = 400
          real(kind=8), parameter :: dt = 1D-4
          real(kind=8), parameter :: pi = 3.1415926535897932384626D0
          real(kind=8), parameter :: eps=EPSILON(eps)
@@ -48,7 +48,8 @@
       use variables
       implicit none
 
-      integer :: fid, i, j
+      integer :: fid, i, j, nTS
+      real :: time_total
       real(kind=8) :: q, dq
       type(fcType) :: gt
       character(len=stdL) :: fname
@@ -75,12 +76,21 @@
       call fft(fid, i, gt)
       close(fid)
 
+      open(fid, file=trim(fname))
+      do i=1,i+1
+         read(fid,*)time_total
+      end do
+
+      nTS = int(time_total/dt) + 1
+      print *,nTS
+
       allocate(time(nTS))
       do i=1, nTS
          time(i) = real(i-1,kind=8) * dt
       end do
 
-      open(fid, file='interp_out.dat')
+!      open(fid, file='interp_out.dat')
+      open(fid, file=(trim(fname) // trim('_interp_out.dat')))
       do i=1, nTS
          call ifft(gt, time(i), q, dq)
          write(fid,'(F9.4, 2(1X,1pE15.6))') &
