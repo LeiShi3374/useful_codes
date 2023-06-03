@@ -1,0 +1,24 @@
+#--------------------------------------------------------------------
+#
+#     Parameters used for Fitzhugh-Nagumo Ventricular Myocyte Model.
+#
+#--------------------------------------------------------------------
+
+#     Scaling factors
+#     Voltage scaling
+      Vscale  : 1.0
+
+#     Time scaling (ms)
+      Tscale  : 1.0
+
+#     Voltage offset parameter
+      Voffset : 0.0
+
+#-----------------------------------------------------------------------
+#     Model parameters
+      alpha : -0.5
+      a     : 0.0
+      b     : -0.6
+      c     : 50.0
+
+########################################################################

@@ -1,0 +1,15 @@
+# Num. partitions
+3
+
+# part 1: basal region
+../../myo_h1.50mm-mesh-complete/mesh-surfaces/epi_base.vtp
+
+# part 2: medial region
+../../myo_h1.50mm-mesh-complete/mesh-surfaces/epi_mid.vtp
+
+# part 3: apical region
+../../myo_h1.50mm-mesh-complete/mesh-surfaces/epi_apex.vtp
+
+# Load target file to be partitioned
+epi.vtp
+

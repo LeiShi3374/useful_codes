@@ -1,0 +1,13 @@
+#Num Spatial Dimensions
+3
+
+#nStart    nEnd    nFreq
+10        20000    10
+
+#Time step
+0.005
+
+#vtu files path
+24-procs/result_
+
+

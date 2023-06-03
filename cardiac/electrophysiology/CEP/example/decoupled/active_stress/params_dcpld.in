@@ -1,0 +1,29 @@
+#--------------------------------------------------------------------
+#
+#     Parameters used for decoupled, uniformly activated, active-
+#     stress model
+#
+#--------------------------------------------------------------------
+
+#--------------------------------------------------------------------
+#     Cardiac cycle length (ms)
+      cycle_length: 1000.0
+
+#     Contractility (Pa)
+      sigm0 : 9.0E4
+
+#     Min activation rate (ms^-1)
+      min_alpha : -0.03
+
+#     Max activation rate (ms^-1)
+      max_alpha : 0.005
+
+#     Onset of systole (ms)
+      t_sys : 170.0
+
+#     Onset of diastole (ms)
+      t_dia : 484.0
+
+#     Gamma (ms)
+      gamma : 5.0
+########################################################################

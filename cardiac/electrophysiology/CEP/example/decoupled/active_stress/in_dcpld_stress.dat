@@ -1,0 +1,11 @@
+
+Electrophysiology model: decoupled
+
+Number of time steps: 15000
+
+Time step size: 0.2    # ms
+
+Excitation-contraction coupling: active_stress {
+    Time integration scheme: rk4
+    Parameters file path: params_dcpld.in
+}

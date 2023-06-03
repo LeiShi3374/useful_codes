@@ -1,0 +1,8 @@
+
+Electrophysiology model: decoupled
+
+Number of time steps: 15000
+
+Time step size: 0.2       # ms
+
+Excitation-contraction coupling: active_strain

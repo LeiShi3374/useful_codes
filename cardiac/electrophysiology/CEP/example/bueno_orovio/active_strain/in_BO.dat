@@ -1,0 +1,23 @@
+
+Electrophysiology model: bueno_orovio {
+    CEP model parameters file path: params_bo.in
+}
+
+Myocardium zone: epi
+
+Time integration scheme: rk4
+
+Number of time steps: 10000
+
+Time step size: 0.1       # ms
+
+Stimulus: I {
+    Amplitude: -38.0
+    Start time: 50 .0     # ms
+    Duration: 1.0         # ms
+    Cycle length: 1000.0  # ms
+}
+
+Excitation-contraction coupling: active_strain {
+    Time integration scheme: rk4
+}

@@ -1,0 +1,24 @@
+
+Electrophysiology model: aliev_panfilov {
+    CEP model parameters file path: params_ap.in
+}
+
+Myocardium zone: epi
+
+Time integration scheme: rk4
+
+Number of time steps: 6450
+
+Time step size: 0.2       # ms
+
+Stimulus: I {
+    Amplitude: 52.0
+    Start time: 400.0     # ms
+    Duration: 1.0         # ms
+    Cycle length: 1290.0  # ms
+}
+
+Excitation-contraction coupling: active_stress {
+    Time integration scheme: be
+}
+

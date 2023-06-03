@@ -1,0 +1,85 @@
+#--------------------------------------------------------------------
+#
+#   Parameters used for Bueno-Orovio Ventricular Myocyte Model.
+#
+#--------------------------------------------------------------------
+#   Scaling factors
+
+#   Voltage scaling
+    Vscale : 85.7
+
+#   Time scaling
+    Tscale : 1.0
+
+#   Voltage offset parameter
+    Voffset : -84.0
+#--------------------------------------------------------------------
+#   Model parameters (epi, endo, myo)
+    u_o      : (/0.0, 0.0, 0.0/)
+    u_u      : (/1.55, 1.56, 1.61/)
+    theta_v  : (/0.3, 0.3, 0.3/)
+    theta_w  : (/0.13, 0.13, 0.13/)
+    thetam_v : (/0.006, 0.2, 0.1/)
+    theta_o  : (/0.006, 0.006, 0.005/)
+    taum_v1  : (/60.0, 75.0, 80.0/)
+    taum_v2  : (/1150.0, 10.0, 1.4506/)
+    taup_v   : (/1.4506, 1.4506, 1.4506/)
+    taum_w1  : (/60.0, 6.0, 70.0/)
+    taum_w2  : (/15.0, 140.0, 8.0/)
+    km_w     : (/65.0, 200.0, 200.0/)
+    um_w     : (/0.03, 0.016, 0.016/)
+    taup_w   : (/200.0, 280.0, 280.0/)
+    tau_fi   : (/0.11, 0.1, 0.078/)
+    tau_o1   : (/400.0, 470.0, 410.0/)
+    tau_o2   : (/6.0, 6.0, 7.0/)
+    tau_so1  : (/30.0181, 40.0, 91.0/)
+    tau_so2  : (/0.9957, 1.2, 0.8/)
+    k_so     : (/2.0458, 2.0, 2.1/)
+    u_so     : (/0.65, 0.65, 0.6/)
+    tau_s1   : (/2.7342, 2.7342, 2.7342/)
+    tau_s2   : (/16.0, 2.0, 2.0/)
+    k_s      : (/2.0994, 2.0994, 2.0994/)
+    u_s      : (/0.9087, 0.9087, 0.9087/)
+    tau_si   : (/1.8875, 2.9013, 3.3849/)
+    tau_winf : (/0.07, 0.0273, 0.01/)
+    ws_inf   : (/0.94, 0.78, 0.5/)
+#--------------------------------------------------------------------
+#     Electromechanics coupling parameters: active strain model
+#     Active force of sacromere (-mM^{-2})
+      alfa : -4.0E6
+
+#     Resting Ca concentration (mM) := slow inward current variable (s)
+      c_0 : 2.155E-4
+
+#     Viscous-type constant (ms-mM^{-2})
+      mu_c : 5.0E9
+
+#     Force-length relationship parameters
+#     Initial length of sacromeres (um)
+      SL0 : 1.95
+
+#     Min. length of sacromeres (um)
+      SLmin : 1.7
+
+#     Max. length of sacromeres (um)
+      SLmax : 2.6
+
+#     Fourier coefficients
+      f0  : -4333.618335582119
+      fs1 :  2570.395355352195
+      fs2 :  1329.53611689133
+      fs3 :  104.943770305116
+      fc1 : -2051.827278991976
+      fc2 :  302.216784558222
+      fc3 :  218.375174229422
+
+#--------------------------------------------------------------------
+#     Cm: Cell capacitance per unit surface area
+      Cm  : 1.0
+
+#     sV: Surface to volume ratio
+      sV  : 1.0
+
+#     rho: Cellular resistivity
+      rho : 1.0
+#####################################################################

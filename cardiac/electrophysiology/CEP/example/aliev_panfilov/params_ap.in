@@ -1,0 +1,55 @@
+#--------------------------------------------------------------------
+#
+#     Parameters used for Aliev-Panfilov Ventricular Myocyte Model.
+#
+#--------------------------------------------------------------------
+
+#     Scaling factors
+#     Voltage scaling
+      Vscale  : 100.0
+
+#     Time scaling (ms)
+      Tscale  : 12.9
+
+#     Voltage offset parameter
+      Voffset : -80.0
+
+#-----------------------------------------------------------------------
+#     Model parameters
+      alpha : 5.0e-2
+      a     : 2.0e-3
+      b     : 0.15
+      c     : 8.0
+      mu1   : 0.2
+      mu2   : 0.3
+
+#-----------------------------------------------------------------------
+#     Electromechanics coupling parameters: active stress model
+#     Resting voltage (mV)
+      Vrest : -80.0
+
+#     Critical voltage (mV)
+      Vcrit : 0.0
+
+#     Saturation potential (Pa/mV)
+      K_T : 5.0e3
+
+#     Minimum activation (ms^{-1})
+      eps_0 : 0.1
+
+#     Maximum activation (ms^{-1})
+      eps_i : 1.0
+
+#     Transition rate (mV^{-1})
+      xi_T  : 1.0
+
+#-----------------------------------------------------------------------
+#     Cm: Cell capacitance per unit surface area
+      Cm  : 1.0
+
+#     sV: Surface to volume ratio
+      sV  : 1.0
+
+#     rho: Cellular resistivity
+      rho : 1.0
+########################################################################

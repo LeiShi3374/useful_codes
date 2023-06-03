@@ -1,0 +1,205 @@
+#--------------------------------------------------------------------
+#
+#     Constants for TenTusscher-Panfilov Ventricular Myocyte Model.
+#
+#--------------------------------------------------------------------
+
+#     Default model parameters
+#     R: Gas constant, units: J/mol/K
+      Rc : 8314.472
+
+#     T: Temperature, units: K
+      Tc : 310.0
+
+#     F: Faraday constant, units: C/mmol
+      Fc : 96485.3415
+
+#     Cm: Cell capacitance per unit surface area, units: uF/cm^{2}
+      Cm : 0.185
+
+#     sV: Surface to volume ratio, units: um^{-1}
+      sV : 0.2
+
+#     rho: Cellular resistivity, units: \Omega-cm
+      rho : 162.0
+
+#     V_c: Cytoplasmic volume, units: um^{3}
+      V_c : 16.404E-3
+
+#     V_sr: Sacroplasmic reticulum volume, units: um^{3}
+      V_sr : 1.094E-3
+
+#     V_ss: Subspace volume, units: um^{3}
+      V_ss : 5.468E-5
+
+#     K_o: Extracellular K concentration, units: mM
+      K_o : 5.4
+
+#     Na_o: Extracellular Na concentration, units: mM
+      Na_o : 140.0
+
+#     Ca_o: Extracellular Ca concentration, units: mM
+      Ca_o : 2.0
+
+#     G_Na: Maximal I_Na conductance, units: nS/pF
+      G_Na : 14.838
+
+#     G_K1: Maximal I_K1 conductance, units: nS/pF
+      G_K1 : 5.405
+
+#     G_to: Maximal epicardial I_to conductance, units: nS/pF
+      G_to : (/0.294, 0.073, 0.294/)
+
+#     G_Kr: Maximal I_Kr conductance, units: nS/pF
+      G_Kr : 0.153
+
+#     G_Ks: Maximal epicardial I_Ks conductance, units: nS/pF
+      G_Ks : (/0.392, 0.392, 0.098/)
+
+#     p_KNa: Relative I_Ks permeability to Na, dimensionless
+      p_KNa : 3.E-2
+
+#     G_CaL: Maximal I_CaL conductance, units: cm^{3}/uF/ms
+      G_CaL : 3.98E-5
+
+#     K_NaCa: Maximal I_NaCa, units: pA/pF
+      K_NaCa : 1000.0
+
+#     gamma: Voltage dependent parameter of I_NaCa, dimensionless
+      gamma : 0.35
+
+#     K_mCa: Ca_i half-saturation constant for I_NaCa, units: mM
+      K_mCa : 1.38
+
+#     K_mNai: Na_i half-saturation constant for I_NaCa, units: mM
+      K_mNai : 87.5
+
+#     K_sat: Saturation factor for I_NaCa, dimensionless
+      K_sat : 0.1
+
+#     alpha: Factor enhancing outward nature of I_NaCa, dimensionless
+      alpha : 2.5
+
+#     p_NaK: Maximal I_NaK, units: pA/pF
+      p_NaK : 2.724
+
+#     K_mK: K_o half-saturation constant of I_NaK, units: mM
+      K_mK : 1.0
+
+#     K_mNa: Na_i half-saturation constant of I_NaK, units: mM
+      K_mNa : 40.0
+
+#     G_pK: Maximal I_pK conductance, units: nS/pF
+      G_pK : 1.46E-2
+
+#     G_pCa: Maximal I_pCa conductance, units: pA/pF
+      G_pCa : 0.1238
+
+#     K_pCa: Half-saturation constant of I_pCa, units: mM
+      K_pCa : 5.0E-4
+
+#     G_bNa: Maximal I_bNa conductance, units: nS/pF
+      G_bNa : 2.9E-4
+
+#     G_bCa: Maximal I_bCa conductance, units: nS/pF
+      G_bCa : 5.92E-4
+
+#     Vmax_up: Maximal I_up conductance, units: mM/ms
+      Vmax_up : 6.375E-3
+
+#     K_up: Half-saturation constant of I_up, units: mM
+      K_up : 2.5E-4
+
+#     V_rel: Maximal I_rel conductance, units: mM/ms
+      V_rel : 0.102
+
+#     k1p: R to O and RI to I, I_rel transition rate, units: mM^{-2}/ms
+      k1p : 0.15
+
+#     k2p: O to I and R to RI, I_rel transition rate, units: mM^{-1}/ms
+      k2p : 4.5E-2
+
+#     k3: O to R and I to RI, I_rel transition rate, units: ms^{-1}
+      k3 : 6.0E-2
+
+#     k4: I to O and Ri to I, I_rel transition rate, units: ms^{-1}
+      k4 : 5.0E-3
+
+#     EC: Ca_sr half-saturation constant of k_casr, units: mM
+      EC : 1.5
+
+#     max_sr: Maximum value of k_casr, dimensionless
+      max_sr : 2.5
+
+#     min_sr: Minimum value of k_casr, dimensionless
+      min_sr : 1.0
+
+#     V_leak: Maximal I_leak conductance, units: mM/ms
+      V_leak : 3.6E-4
+
+#     V_xfer: Maximal I_xfer conductance, units: mM/ms
+      V_xfer : 3.8E-3
+
+#     Buf_c: Total cytoplasmic buffer concentration, units: mM
+      Buf_c : 0.2
+
+#     K_bufc: Ca_i half-saturation constant for cytplasmic buffer, units: mM
+      K_bufc : 1.E-3
+
+#     Buf_sr: Total sacroplasmic buffer concentration, units: mM
+      Buf_sr : 10.0
+
+#     K_bufsr: Ca_sr half-saturation constant for subspace buffer, units: mM
+      K_bufsr : 0.3
+
+#     Buf_ss: Total subspace buffer concentration, units: mM
+      Buf_ss : 0.4
+
+#     K_bufss: Ca_ss half-saturation constant for subspace buffer, units: mM
+      K_bufss : 2.5E-4
+
+#     Resting potential, units: mV
+      Vrest : -85.23
+
+#-----------------------------------------------------------------------
+#     Electromechanics coupling parameters: active strain model
+
+#     Active force of sacromere (-mM^{-2})
+      alfa : -4.0E6
+
+#     Resting Ca concentration (mM)
+      c_Ca0 : 1.0E-4  # 2.155E-4
+
+#     Viscous-type constant (ms-mM^{-2})
+      mu_Ca : 5.0E9
+
+#     Force-length relationship parameters
+#     Initial length of sacromeres (um)
+      SL0 : 1.95
+
+#     Min. length of sacromeres (um)
+      SLmin : 1.7
+
+#     Max. length of sacromeres (um)
+      SLmax : 2.6
+
+#     Fourier coefficients
+      f0  : -4333.618335582119
+      fs1 :  2570.395355352195
+      fs2 :  1329.53611689133
+      fs3 :  104.943770305116
+      fc1 : -2051.827278991976
+      fc2 :  302.216784558222
+      fc3 :  218.375174229422
+
+#-----------------------------------------------------------------------
+#     Scaling factors
+#     Voltage scaling
+      Vscale  : 1.0
+
+#     Time scaling
+      Tscale  : 1.0
+
+#     Voltage offset parameter
+      Voffset : 0.0
+########################################################################

@@ -1,0 +1,15 @@
+
+Number of spatial dimensions: 3
+Time step size: 0.01
+
+Saved results folder path: ../results_mks
+Name prefix of saved VTU files: result
+
+VTU files start time step: 1
+VTU files end time step: 100
+VTU files increment: 1
+
+Mesh file path: ../mesh/P1_0.005_Exact/mesh-complete.mesh.vtu
+
+Probe coordinates: (0.025, 0.03, 0.0)
+Probe coordinates: (0.0, 0.03, 0.0)

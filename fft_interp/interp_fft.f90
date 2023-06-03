@@ -1,7 +1,7 @@
 
       module variables
-         integer, parameter :: stdL = 400
-         real(kind=8), parameter :: dt = 1D-4
+         integer, parameter :: nTS = 5001, stdL = 400
+         real(kind=8), parameter :: dt = 1D-3
          real(kind=8), parameter :: pi = 3.1415926535897932384626D0
          real(kind=8), parameter :: eps=EPSILON(eps)
          type fcType
@@ -95,6 +95,17 @@
          call ifft(gt, time(i), q, dq)
          write(fid,'(F9.4, 2(1X,1pE15.6))') &
             time(i), q, dq
+      end do
+      close(fid)
+
+      open(fid, file='fourier_coeffs.dat')
+      write(fid,'(1X,F9.4)') gt%ti
+      write(fid,'(1X,F9.4)') gt%T
+      write(fid,'(1X,1pE15.6)') gt%qi
+      write(fid,'(1X,1pE15.6)') gt%qs
+      write(fid,'(1X,I5)') gt%n
+      do i=1, gt%n
+         write(fid,'(2(X,1pE15.6))') gt%r(i), gt%i(i)
       end do
       close(fid)
 

@@ -1,13 +1,13 @@
     close all;
     clear; clc;
 
-    f1  = 'fib_stress.dat';
+    f1  = 'load.dat';
     f2 = 'interp_out.dat';
 
-    dt = 0.0001;
+    dt = 0.001;
     
     fid = fopen(f1,'r');
-    C = textscan(fid,'%f,%f','HeaderLines',1);
+    C = textscan(fid,'%f %f','HeaderLines',1);
     fData = cell2mat(C);
     fclose(fid);
 
